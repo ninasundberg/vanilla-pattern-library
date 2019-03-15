@@ -1,0 +1,54 @@
+////
+/// Mixins for creating tabs
+/// @group Component mixins
+/// @author Digital CX
+////
+
+@import "../../utilities";
+
+@mixin vanilla-tooltip() {
+  cursor: help;
+  border-bottom: dashed 1px $vanilla-color-text;
+  position: relative;
+
+  &:before {
+    content: attr(data-sdv-tooltip);
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    display: block;
+    font-weight: 400;
+    line-height: 1.5;
+    font-size: vanilla-px-to-em(14);
+    opacity: 0;
+    background-color: $vanilla-color-text;
+    color: $vanilla-color-white;
+    padding: 0.25rem 0.5rem;
+    pointer-events: none;
+    visibility: hidden;
+    max-width: 200px;
+  }
+
+  &:after {
+    content: '';
+    bottom: -0.5rem;
+    position: absolute;
+    bottom: 1rem;
+    width: 0;
+    height: 0;
+    left: 50%;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-top: 0.5rem solid $vanilla-color-text;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &:hover:before,
+  &:focus:before,
+  &:hover:after,
+  &:focus:after {
+    opacity: 1;
+    visibility: visible;
+  }
+}
